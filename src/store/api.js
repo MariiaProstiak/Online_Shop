@@ -149,3 +149,30 @@ export const getProduct = (id) => {
     `https://shop-a0ba3-default-rtdb.europe-west1.firebasedatabase.app/products/${id}.json`
   );
 };
+
+export const deleteProduct = (id) => {
+  return fetch(
+    `https://shop-a0ba3-default-rtdb.europe-west1.firebasedatabase.app/products/${id}.json`,
+
+    {
+      method: "DELETE",
+    }
+  );
+};
+
+export const updateProduct = (obj) => {
+  return fetch(
+    `https://shop-a0ba3-default-rtdb.europe-west1.firebasedatabase.app/products/${obj.id}.json`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        title: obj.title,
+        price: obj.price,
+        imageUrl: obj.imageUrl,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};

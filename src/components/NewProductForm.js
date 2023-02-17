@@ -1,14 +1,32 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./NewProductForm.module.css";
 import UploadAndDisplayImage from "./ui/UploadAndDisplayImage ";
 
 export const NewProductForm = (props) => {
+  const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
+  const [title, setTitle] = useState(
+    props.updateForm ? props.product.title : ""
+  );
+  const [imgUrl, setImgUrl] = useState(
+    props.updateForm ? props.product.imageUrl : ""
+  );
+  const [price, setPrice] = useState(
+    props.updateForm ? props.product.price : ""
+  );
   let image = "";
   let imageUrl = "";
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const priceInputRef = useRef();
+
+  // if (props.updateForm) {
+  //   setImgUrl(props.product.imageUrl);
+  //   setPrice(props.product.price);
+  //   setTitle(props.product.title);
+  // }
+
   const submitHandler = (event) => {
     event.preventDefault();
     const enteredTitle = titleInputRef.current.value;
@@ -22,7 +40,7 @@ export const NewProductForm = (props) => {
       favorite: false,
     };
     props.onAddProduct(productData);
-    console.log(productData);
+    navigate("/");
   };
 
   function setMethode(event) {
@@ -33,13 +51,20 @@ export const NewProductForm = (props) => {
     imageUrl = imageBase;
   }
 
-  if (selectedOption === "URL") {
+  if (selectedOption === "URL" || props.updateForm) {
     image = (
       <div className={classes.control}>
         <label htmlFor="image" className={classes.label}>
           Product Image
         </label>
-        <input type="url" required id="image" ref={imageInputRef}></input>
+        <input
+          type="url"
+          required
+          id="image"
+          defaultValue={props.updateForm ? props.product.imageUrl : ""}
+          ref={imageInputRef}
+          onChange={(e) => setImgUrl(e.target.value)}
+        ></input>
       </div>
     );
   } else if (selectedOption === "Upload") {
@@ -59,7 +84,14 @@ export const NewProductForm = (props) => {
           <label htmlFor="title" className={classes.label}>
             Product title
           </label>
-          <input type="text" required id="title" ref={titleInputRef}></input>
+          <input
+            type="text"
+            required
+            id="title"
+            ref={titleInputRef}
+            defaultValue={props.updateForm ? props.product.title : ""}
+            onChange={(e) => setTitle(e.target.value)}
+          ></input>
         </div>
         <div className={classes.control}>
           <label htmlFor="radio" className={classes.label}>
@@ -74,6 +106,7 @@ export const NewProductForm = (props) => {
                 id="url"
                 required
                 className={classes.selector}
+                checked={props.updateForm}
               />
               <span>URL</span>
             </label>
@@ -94,11 +127,18 @@ export const NewProductForm = (props) => {
           <label htmlFor="price" className={classes.label}>
             Product price
           </label>
-          <input type="text" required id="price" ref={priceInputRef}></input>
+          <input
+            type="text"
+            required
+            id="price"
+            ref={priceInputRef}
+            defaultValue={props.updateForm ? props.product.price : ""}
+            onChange={(e) => setPrice(e.target.value)}
+          ></input>
         </div>
 
         <div className={classes.actions}>
-          <button>Add Product</button>
+          <button>{props.updateForm ? "Upload changes" : "Add Product"}</button>
         </div>
       </form>
     </div>

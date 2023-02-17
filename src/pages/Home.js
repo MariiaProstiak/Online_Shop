@@ -37,13 +37,11 @@ export const Home = (props) => {
             id: key,
             ...data[key],
           };
-          console.log(favIds);
           if (favIds.includes(key)) {
             product.favorite = true;
           } else {
             product.favorite = false;
           }
-          console.log(product);
           products.push(product);
         }
         ctx.setFavoritesList(products.filter((item) => item.favorite));
@@ -54,7 +52,6 @@ export const Home = (props) => {
   }, [favIds]);
 
   const filterHandler = (value) => {
-    console.log("Filter: " + value);
     setSearchValue(value);
   };
   let filterItems = [];

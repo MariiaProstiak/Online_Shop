@@ -9,6 +9,7 @@ import AuthContext from "./store/auth-context";
 import AuthPage from "./pages/AuthPage";
 import { NewProductPage } from "./pages/NewProduct";
 import { OrderPage } from "./pages/OrderPage";
+import { UpdateProductPage } from "./pages/UpdateProductPage";
 
 // export const AppContext = React.createContext({});
 
@@ -32,6 +33,9 @@ function App() {
 
         {authCtx.isLoggedIn && (
           <Route path="/new-product" element={<NewProductPage />} />
+        )}
+        {authCtx.isLoggedIn && (
+          <Route path="/update-product/:name" element={<UpdateProductPage />} />
         )}
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>

@@ -16,6 +16,8 @@ export const AppContext = createContext({
   removeFavorite: (obj) => {},
   setCartOpened: (val) => {},
   setCartItems: (obj) => {},
+  onDeleteProduct: (id) => {},
+  onUpdateProduct: (obj) => {},
 });
 
 export function AppContextProvider(props) {
@@ -50,6 +52,23 @@ export function AppContextProvider(props) {
       setCartItems((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
       alert("Error when removing an item from the cart!");
+      console.error(error);
+    }
+  };
+  const onDeleteProduct = (id) => {
+    try {
+      // setItems((prev) => prev.filter((item) => item.id !== id));
+      API.deleteProduct(id);
+    } catch (error) {
+      alert("Error when removing an item!");
+      console.error(error);
+    }
+  };
+  const onUpdateProduct = (obj) => {
+    try {
+      API.updateProduct(obj);
+    } catch (error) {
+      alert("Error when removing an item!");
       console.error(error);
     }
   };
@@ -99,6 +118,8 @@ export function AppContextProvider(props) {
     setFavoritesList,
     setCartOpened,
     setCartItems,
+    onDeleteProduct,
+    onUpdateProduct,
   };
 
   return (
