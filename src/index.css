@@ -1,0 +1,15 @@
+ body {
+   margin: 0;
+   font-family: system-ui;
+   background-color: #e7f6ff;
+   height: 100%;
+ }
+
+
+ .wrapper {
+   background: #ffffff;
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+   border-radius: 20px;
+   max-width: 1080px;
+   margin: 50px auto;
+ }

@@ -1,0 +1,43 @@
+.cartEmpty {
+   text-align: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   flex: 1 1 0%;
+}
+
+.cartEmpty p {
+   width: 280px;
+   line-height: 24px;
+}
+
+.cartEmpty .greenButton {
+   width: 245px;
+   margin-top: 20px;
+}
+
+.cartEmpty .greenButton:hover img {
+   transform: rotate(180deg) translateX(3px);
+}
+
+.cartEmpty .greenButton img {
+   position: relative;
+   top: 1px;
+   transform: rotate(180deg);
+   margin-right: 15px;
+   transition: transform 0.15s ease-in-out;
+}
+
+.greenButton {
+   width: 100%;
+   border-radius: 18px;
+   height: 55px;
+   background: #9dd558;
+   border: 0;
+   color: #fff;
+   font-size: 16px;
+   font-weight: 500;
+   cursor: pointer;
+   transition: background 0.2s ease-in-out;
+}

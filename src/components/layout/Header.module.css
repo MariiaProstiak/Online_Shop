@@ -1,0 +1,70 @@
+.Header {
+   border-bottom: 1px solid #eaeaea;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 40px;
+}
+
+.Header a {
+   color: inherit;
+   text-decoration: none;
+}
+
+.Header img {
+   margin-right: 15px;
+}
+
+.Logo_img {
+   margin-right: 15px;
+}
+
+.Logo {
+   display: flex;
+   align-items: center;
+}
+
+.Logo_header {
+   text-transform: uppercase;
+   margin: 0;
+}
+
+.Logo_text {
+   margin: 0;
+   opacity: 0.5;
+}
+
+.Header ul {
+   list-style: none;
+   display: flex;
+   align-items: baseline;
+}
+
+.Header li {
+   margin-left: 3rem;
+   cursor: pointer;
+   position: relative;
+   display: inline-block;
+}
+
+.tooltip {}
+
+.tooltip+.tooltiptext {
+   visibility: hidden;
+   width: 120px;
+   background-color: rgba(0, 0, 0, 0.88);
+   color: #fff;
+   text-align: center;
+   border-radius: 6px;
+   padding: 5px 0;
+
+   /* Position the tooltip */
+   position: absolute;
+   top: 20px;
+   left: -50px;
+   z-index: 1;
+}
+
+.tooltip:hover+.tooltiptext {
+   visibility: visible;
+}

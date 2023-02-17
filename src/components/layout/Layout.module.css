@@ -1,0 +1,21 @@
+.Wrapper {
+   background: #fff;
+   box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+   border-radius: 20px;
+   max-width: 1080px;
+   margin: 50px auto;
+}
+
+.Clear * {
+   box-sizing: border-box;
+   outline: none;
+}
+
+.Clear a {
+   color: inherit;
+   text-decoration: none;
+}
+
+.main {
+   padding-bottom: 1rem;
+}

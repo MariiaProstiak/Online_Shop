@@ -1,0 +1,105 @@
+.NewProduct {
+   padding: 1rem;
+}
+
+.form {
+   padding: 1rem;
+}
+
+.control {
+   margin-bottom: 0.5rem;
+}
+
+.label {
+   display: block;
+   font-weight: bold;
+   margin-bottom: 0.5rem;
+}
+
+
+.control input,
+.control textarea {
+   display: block;
+   font: inherit;
+   border-radius: 4px;
+   border: 1px solid #ccc;
+   padding: 0.25rem;
+   width: 100%;
+}
+
+.actions {
+   margin-top: 1rem;
+   text-align: right;
+}
+
+.actions button {
+   font: inherit;
+   cursor: pointer;
+   background-color: #9dd558;
+   color: white;
+   padding: 0.5rem 1.5rem;
+   border: 1px solid #9dd558;
+   border-radius: 4px;
+   font-weight: bold;
+}
+
+.actions button:hover,
+.actions button:active {
+   background-color: #3e8e41;
+   border-color: #3a823c;
+}
+
+.radio {
+   font-family: sans-serif;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+}
+
+.lradio {
+   padding: 6px;
+   border-radius: 50px;
+   display: inline-flex;
+   cursor: pointer;
+   transition: background .2s ease 0s;
+   margin: 8px 0;
+   -webkit-tap-highlight-color: transparent;
+}
+
+
+
+.lradio:hover,
+.lradio:focus-within {
+   background: rgba(159, 159, 159, 0.1);
+}
+
+.lradio input {
+   vertical-align: middle;
+   width: 20px;
+   height: 20px;
+   border-radius: 10px;
+   background: none;
+   border: 0;
+   box-shadow: inset 0 0 0 1px #9F9F9F;
+   box-shadow: inset 0 0 0 1.5px #9F9F9F;
+   appearance: none;
+   padding: 0;
+   margin: 0;
+   transition: box-shadow 150ms cubic-bezier(0.95, 0.15, 0.5, 1.25);
+   pointer-events: none;
+}
+
+.lradio input:focus {
+   outline: none;
+}
+
+.lradio input:checked {
+   box-shadow: inset 0 0 0 6px #3e8e41;
+}
+
+.lradio span {
+   vertical-align: middle;
+   display: inline-block;
+   line-height: 20px;
+   padding: 0 15px;
+}
