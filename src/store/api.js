@@ -23,6 +23,21 @@ export const addToCart = (obj) => {
   return res;
 };
 
+export const updateInCart = (obj) => {
+  //console.log(JSON.stringify(obj));
+  const res = fetch(
+    `https://shop-a0ba3-default-rtdb.europe-west1.firebasedatabase.app/cart/${obj.id}.json`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({ amount: obj.amount }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return res;
+};
+
 export const addProduct = (obj) => {
   return fetch(
     "https://shop-a0ba3-default-rtdb.europe-west1.firebasedatabase.app/products.json",

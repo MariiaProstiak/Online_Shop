@@ -4,6 +4,7 @@ import Spinner from "../components/ui/Spinner";
 import { AppContext } from "../store/app-context";
 import AuthContext from "../store/auth-context";
 import { useNavigate } from "react-router-dom";
+import ItemForm from "./ItemForm";
 
 export const Card = (props) => {
   const [favorite, setFavorite] = useState(props.favorite);
@@ -27,8 +28,15 @@ export const Card = (props) => {
     }
   }
 
-  const handleClickPlus = () => {
-    appCtx.onAddToCart(object);
+  const handleClickPlus = (amount) => {
+    const obj = {
+      id: props.id,
+      title: props.title,
+      imageUrl: props.imageUrl,
+      price: props.price,
+      amount: amount,
+    };
+    appCtx.onAddToCart(obj);
   };
   const onClickDelete = () => {
     appCtx.onDeleteProduct(props.id);
@@ -71,25 +79,14 @@ export const Card = (props) => {
           <div className={classes.image}>
             <img src={props.imageUrl} alt="" />{" "}
           </div>
-
           <h5>{props.title}</h5>
           <div className={classes.cardContent}>
             <div>
               <span>Price:</span>
               <b>{props.price} $</b>
             </div>
-            {appCtx.onAddToCart && (
-              <img
-                className={classes.plus}
-                onClick={handleClickPlus}
-                src={
-                  appCtx.isItemAdded(props.id)
-                    ? "/img/btn-checked.svg"
-                    : "/img/btn-plus.svg"
-                }
-                alt="Plus"
-              />
-            )}
+
+            <ItemForm id={props.id} onAddToCart={handleClickPlus} />
           </div>
         </>
       )}

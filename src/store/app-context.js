@@ -28,32 +28,53 @@ export function AppContextProvider(props) {
   const [cartOpened, setCartOpened] = useState(false);
   const authCtx = useContext(AuthContext);
 
-  const onAddToCart = async (obj) => {
-    try {
-      API.addToCart(obj)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          setCartItems((prev) => [
-            ...prev,
-            { ...obj, idProduct: obj.id, id: data.name },
-          ]);
-        });
-    } catch (error) {
-      alert("Error when adding an item to cart!");
-      console.error(error);
+  const onAddToCart = async (obj, isInCart = false) => {
+    let index;
+    if (isInCart) {
+      index = cartItems.findIndex((el) => el.id === obj.id);
+    } else {
+      index = cartItems.findIndex((el) => el.idProduct === obj.id);
+    }
+    if (index === -1) {
+      try {
+        API.addToCart(obj)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            setCartItems((prev) => [
+              ...prev,
+              { ...obj, idProduct: obj.id, id: data.name },
+            ]);
+          });
+      } catch (error) {
+        alert("Error when adding an item to cart!");
+        console.error(error);
+      }
+    } else {
+      const updatedCart = [...cartItems];
+      updatedCart[index].amount += obj.amount;
+      setCartItems(updatedCart);
+      try {
+        API.updateInCart(updatedCart[index]);
+      } catch (error) {
+        alert("Error when adding an item to cart!");
+        console.error(error);
+      }
     }
   };
 
-  const onRemoveItem = (id) => {
-    try {
+  const onRemoveItem = (id, removeAll = false) => {
+    let updatedCart = [...cartItems];
+    const index = updatedCart.findIndex((el) => el.id === id);
+    if (updatedCart[index].amount === 1 || removeAll) {
+      updatedCart = updatedCart.filter((el) => el.id !== id);
       API.deleteFromCart(id);
-      setCartItems((prev) => prev.filter((item) => item.id !== id));
-    } catch (error) {
-      alert("Error when removing an item from the cart!");
-      console.error(error);
+    } else {
+      updatedCart[index].amount -= 1;
+      API.updateInCart(updatedCart[index]);
     }
+    setCartItems(updatedCart);
   };
   const onDeleteProduct = (id) => {
     try {

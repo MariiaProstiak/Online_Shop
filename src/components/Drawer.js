@@ -9,7 +9,14 @@ import classes from "./Drawer.module.css";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const Drawer = ({ items = [], onClose, onRemove, opened }) => {
+export const Drawer = ({
+  items = [],
+  onClose,
+  onRemoveFromCart,
+  onAdd,
+  onRemove,
+  opened,
+}) => {
   const { cartItems, setCartItems, price } = useCart();
   const [isCompleteOrdered, setIsCompleteOrdered] = useState(false);
   const [orderId, setOrderId] = useState(null);
@@ -95,13 +102,18 @@ export const Drawer = ({ items = [], onClose, onRemove, opened }) => {
                   <div style={{ marginRight: "20px", flex: "1 1 0%" }}>
                     <p style={{ marginBottom: "5px" }}>{obj.title}</p>
                     <b>{obj.price} $</b>
+                    <div className={classes.amount}>x{obj.amount}</div>
                   </div>
-                  <img
-                    onClick={() => onRemove(obj.id)}
-                    className={classes.removeBth}
-                    src="/img/btn-remove.svg"
-                    alt="Remove"
-                  />
+                  <div className={classes.actions}>
+                    <button onClick={() => onRemove(obj.id)}>−</button>
+                    <button onClick={() => onAdd(obj)}>+</button>
+                    <img
+                      onClick={() => onRemoveFromCart(obj.id, true)}
+                      className={classes.removeBth}
+                      src="/img/btn-remove.svg"
+                      alt="Remove"
+                    />
+                  </div>
                 </div>
               ))}
             </div>

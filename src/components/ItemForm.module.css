@@ -1,0 +1,29 @@
+.form {
+   display: flex;
+
+   text-align: center;
+}
+
+.form button {
+   font: inherit;
+   cursor: pointer;
+   background-color: transparent;
+   border: none;
+   padding-top: 12px;
+}
+
+.form button {
+   cursor: pointer;
+   opacity: 0.5;
+   transition: opacity 0.2s ease-in-out;
+}
+
+.form button:hover {
+   opacity: 1;
+}
+
+/* .form button:hover,
+.form button:active {
+   background-color: #641e03;
+   border-color: #641e03;
+} */
