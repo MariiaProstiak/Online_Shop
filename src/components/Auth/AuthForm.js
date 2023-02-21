@@ -66,7 +66,12 @@ const AuthForm = () => {
         if (enteredEmail === currentAdminAddress) {
           authCtx.setIsAdmin(true);
         }
-        authCtx.login(data.idToken, expirationTime.toISOString(), data.localId);
+        authCtx.login(
+          data.idToken,
+          expirationTime.toISOString(),
+          data.localId,
+          enteredEmail
+        );
         navigate("/");
       })
       .catch((err) => {

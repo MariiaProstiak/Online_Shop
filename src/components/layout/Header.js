@@ -127,6 +127,21 @@ export const Header = (props) => {
               onClick={openModalHandler}
               width={18}
               height={18}
+              src="/img/user.svg"
+              alt="User"
+            />
+            <span className={classes.tooltiptext}>
+              Hello {authCtx.userNick.split("@")[0]}
+            </span>
+          </li>
+        )}
+        {isLoggedIn && (
+          <li>
+            <img
+              className={classes.tooltip}
+              onClick={openModalHandler}
+              width={18}
+              height={18}
               src="/img/logout.svg"
               alt="Logout"
             />

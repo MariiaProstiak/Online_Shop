@@ -85,8 +85,15 @@ export const Card = (props) => {
               <span>Price:</span>
               <b>{props.price} $</b>
             </div>
-
-            <ItemForm id={props.id} onAddToCart={handleClickPlus} />
+            {props.justInfo ? (
+              <div className={classes.amount}>x{props.amount}</div>
+            ) : (
+              <ItemForm
+                id={props.id}
+                amount={props.amount}
+                onAddToCart={handleClickPlus}
+              />
+            )}
           </div>
         </>
       )}

@@ -27,7 +27,7 @@ const ItemForm = (props) => {
           type: "number",
           min: "1",
           step: "1",
-          defaultValue: "1",
+          defaultValue: props.amount ? props.amount : "1",
         }}
       />
       <button>

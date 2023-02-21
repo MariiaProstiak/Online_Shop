@@ -13,6 +13,8 @@ export const ProductsList = (props) => {
             price={item.price}
             imageUrl={item.imageUrl}
             favorite={item.favorite}
+            amount={item.amount}
+            justInfo={props.justInfo}
           />
         );
       })}

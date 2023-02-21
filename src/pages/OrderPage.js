@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { getOrdersItems } from "../store/api";
 import { PageWrapper } from "../components/ui/PageWrapper";
 import { ProductsList } from "../components/ProductsList";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Spinner from "../components/ui/Spinner";
 import AuthContext from "../store/auth-context";
 import { getUsersFavoriteProductsId } from "../store/api";
@@ -22,7 +22,7 @@ export const OrderPage = () => {
         setFavIds(fIds);
       }
     })();
-  }, []);
+  }, [authCtx.currentUser]);
 
   useEffect(() => {
     try {
@@ -40,6 +40,7 @@ export const OrderPage = () => {
               price: data[key].price,
               title: data[key].title,
               imageUrl: data[key].imageUrl,
+              amount: data[key].amount,
             };
             if (favIds.includes(data[key].idProduct)) {
               product.favorite = true;
@@ -56,7 +57,7 @@ export const OrderPage = () => {
       alert("Error in order request");
       console.error(error);
     }
-  }, [favIds]);
+  }, [favIds, params.name, authCtx.currentUser]);
 
   if (isLoading) {
     return (
@@ -76,7 +77,7 @@ export const OrderPage = () => {
 
   return (
     <PageWrapper title={"Order #" + params.name} isOrder={true}>
-      {!isLoading && <ProductsList products={products} />}
+      {!isLoading && <ProductsList products={products} justInfo={true} />}
     </PageWrapper>
   );
 };
