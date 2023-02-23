@@ -36,6 +36,7 @@ const retrieveStoredToken = () => {
     localStorage.removeItem("nick");
     localStorage.removeItem("userId");
     localStorage.removeItem("expirationTime");
+    localStorage.removeItem("isDesc");
     return null;
   }
 
@@ -80,6 +81,7 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("expirationTime");
+    localStorage.removeItem("isDesc");
     if (logoutTimer) {
       clearTimeout(logoutTimer);
     }

@@ -43,7 +43,7 @@ export const Orders = () => {
       alert("Error in order request");
       console.error(error);
     }
-  }, []);
+  }, [authCtx.currentUser]);
 
   if (orders.length === 0) {
     return (

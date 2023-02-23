@@ -12,6 +12,7 @@
    justify-content: space-between;
    margin-bottom: 25px;
    text-align: center;
+   align-items: baseline;
 }
 
 .responsiveTable .tableHeader {
@@ -53,6 +54,20 @@
    color: #fff;
 }
 
+.buttonSort {
+   margin-left: 5px;
+   font-size: 25px;
+   font-weight: 700;
+   border: none;
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+}
+
+.buttonSort:hover {
+   cursor: pointer;
+   background: #666060;
+}
 
 @media all and (max-width: 767px) {
    .responsiveTable .tableHeader {
