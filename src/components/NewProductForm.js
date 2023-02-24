@@ -6,6 +6,9 @@ import UploadAndDisplayImage from "./ui/UploadAndDisplayImage ";
 export const NewProductForm = (props) => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
+  const [showPreview, setShowPreview] = useState(
+    props.updateForm ? true : false
+  );
   const [title, setTitle] = useState(
     props.updateForm ? props.product.title : ""
   );
@@ -15,11 +18,16 @@ export const NewProductForm = (props) => {
   const [price, setPrice] = useState(
     props.updateForm ? props.product.price : ""
   );
+
+  const [details, setDetails] = useState(
+    props.updateForm ? props.product.details : ""
+  );
   let image = "";
   let imageUrl = "";
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const priceInputRef = useRef();
+  const detailsInputRef = useRef();
 
   // if (props.updateForm) {
   //   setImgUrl(props.product.imageUrl);
@@ -31,12 +39,14 @@ export const NewProductForm = (props) => {
     event.preventDefault();
     const enteredTitle = titleInputRef.current.value;
     const enteredImage = imageUrl ? imageUrl : imageInputRef.current.value;
-    const enteredAddress = priceInputRef.current.value;
+    const enteredPrice = priceInputRef.current.value;
+    const enteredDetails = detailsInputRef.current.value;
 
     const productData = {
       title: enteredTitle,
       imageUrl: enteredImage,
-      price: enteredAddress,
+      price: enteredPrice,
+      details: enteredDetails,
       favorite: false,
     };
     props.onAddProduct(productData);
@@ -45,10 +55,20 @@ export const NewProductForm = (props) => {
 
   function setMethode(event) {
     setSelectedOption(event.target.value);
+    setShowPreview(false);
   }
 
   function imageHandler(imageBase) {
     imageUrl = imageBase;
+  }
+
+  function onChangeImageText(e) {
+    setImgUrl(e.target.value);
+    if (e.target.value !== "") {
+      setShowPreview(true);
+    } else {
+      setShowPreview(false);
+    }
   }
 
   if (selectedOption === "URL" || props.updateForm) {
@@ -63,8 +83,15 @@ export const NewProductForm = (props) => {
           id="image"
           defaultValue={props.updateForm ? props.product.imageUrl : ""}
           ref={imageInputRef}
-          onChange={(e) => setImgUrl(e.target.value)}
+          onChange={onChangeImageText}
         ></input>
+        {showPreview && (
+          <img
+            src={imgUrl}
+            alt="img"
+            style={{ width: "70px", height: "70px" }}
+          ></img>
+        )}
       </div>
     );
   } else if (selectedOption === "Upload") {
@@ -106,7 +133,7 @@ export const NewProductForm = (props) => {
                 id="url"
                 required
                 className={classes.selector}
-                checked={props.updateForm}
+                defaultChecked={props.updateForm}
               />
               <span>URL</span>
             </label>
@@ -135,6 +162,20 @@ export const NewProductForm = (props) => {
             defaultValue={props.updateForm ? props.product.price : ""}
             onChange={(e) => setPrice(e.target.value)}
           ></input>
+        </div>
+
+        <div className={classes.control}>
+          <label htmlFor="details" className={classes.label}>
+            Details
+          </label>
+          <textarea
+            required
+            id="details"
+            rows="5"
+            ref={detailsInputRef}
+            defaultValue={props.updateForm ? props.product.details : ""}
+            onChange={(e) => setDetails(e.target.value)}
+          ></textarea>
         </div>
 
         <div className={classes.actions}>

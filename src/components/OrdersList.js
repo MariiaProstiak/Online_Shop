@@ -29,7 +29,7 @@ const OrdersList = (props) => {
       thisArr = sortByDateAsc(orders);
     }
     setOrders([...thisArr]);
-  }, [isDesc, orders]);
+  }, [isDesc]);
 
   return (
     <div className={classes.tableContainer}>

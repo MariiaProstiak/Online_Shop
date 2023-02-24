@@ -30,9 +30,13 @@ const ItemForm = (props) => {
           defaultValue: props.amount ? props.amount : "1",
         }}
       />
-      <button>
-        <img className={classes.plus} src="/img/btn-plus.svg" alt="Plus" />
-      </button>
+      {props.addButtonText ? (
+        <button className={classes.buttonText}>Add to cart</button>
+      ) : (
+        <button className={classes.buttonImage}>
+          <img className={classes.plus} src="/img/btn-plus.svg" alt="Plus" />
+        </button>
+      )}
 
       {!amountIsValid && <p>Please enter a valid amount (more than 0)</p>}
     </form>

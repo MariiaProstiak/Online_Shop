@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import classes from "./PageWrapper.module.css";
 
 export const PageWrapper = (props) => {
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
 
   const onChangeSearchInput = (event) => {
@@ -35,32 +36,15 @@ export const PageWrapper = (props) => {
   );
 
   const backArrow = (
-    <Link
-      to={`/orders`}
-      style={{
-        display: "block",
-        height: "90px",
-        overflow: "hidden",
-        margin: "20px",
-      }}
-    >
-      <img
-        style={{
-          width: "90px",
-          height: "90px",
-          objectFit: "cover",
-          position: "absolute",
-        }}
-        src="/img/back-arrow.svg"
-        alt="Back"
-      />
-    </Link>
+    <button onClick={() => navigate(-1)} className={classes.backButton}>
+      <img src="/img/back-arrow.svg" alt="Back" />
+    </button>
   );
 
   return (
     <div className={classes.Wrap}>
       <div className={classes.WrapHeader}>
-        {props.isOrder && backArrow}
+        {props.isBackArrow && backArrow}
         <h1>{props.title}</h1>
         {props.addSearch && search}
       </div>

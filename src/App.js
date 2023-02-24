@@ -10,6 +10,7 @@ import AuthPage from "./pages/AuthPage";
 import { NewProductPage } from "./pages/NewProduct";
 import { OrderPage } from "./pages/OrderPage";
 import { UpdateProductPage } from "./pages/UpdateProductPage";
+import ProductPage from "./pages/ProductPage";
 
 // export const AppContext = React.createContext({});
 
@@ -19,6 +20,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" exact element={<Home />} />
+        <Route path="/product/:id" element={<ProductPage />} />
         {!authCtx.isLoggedIn && <Route path="/auth" element={<AuthPage />} />}
         <Route path="/favorites" element={<Favorites />} />
         {authCtx.isLoggedIn && (

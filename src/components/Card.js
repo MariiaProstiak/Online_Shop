@@ -46,6 +46,10 @@ export const Card = (props) => {
     navigate(`/update-product/${props.id}`);
     //appCtx.onUpdateProduct(props.id);
   };
+  const openProductPageHandler = () => {
+    console.log("double click");
+    navigate(`/product/${props.id}`);
+  };
 
   return (
     <div className={classes.card}>
@@ -76,7 +80,7 @@ export const Card = (props) => {
             )}
           </div>
 
-          <div className={classes.image}>
+          <div className={classes.image} onDoubleClick={openProductPageHandler}>
             <img src={props.imageUrl} alt="" />{" "}
           </div>
           <h5>{props.title}</h5>

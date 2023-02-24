@@ -184,6 +184,7 @@ export const updateProduct = (obj) => {
         title: obj.title,
         price: obj.price,
         imageUrl: obj.imageUrl,
+        details: obj.details,
       }),
       headers: {
         "Content-Type": "application/json",

@@ -61,7 +61,7 @@ export const OrderPage = () => {
 
   if (isLoading) {
     return (
-      <PageWrapper title={"Order #" + params.name} isOrder={true}>
+      <PageWrapper title={"Order #" + params.name} isBackArrow={true}>
         <Spinner />
       </PageWrapper>
     );
@@ -69,14 +69,14 @@ export const OrderPage = () => {
 
   if (products.length === 0) {
     return (
-      <PageWrapper title={"Order #" + params.name} isOrder={true}>
+      <PageWrapper title={"Order #" + params.name} isBackArrow={true}>
         <p>This order is empty.</p>
       </PageWrapper>
     );
   }
 
   return (
-    <PageWrapper title={"Order #" + params.name} isOrder={true}>
+    <PageWrapper title={"Order #" + params.name} isBackArrow={true}>
       {!isLoading && <ProductsList products={products} justInfo={true} />}
     </PageWrapper>
   );

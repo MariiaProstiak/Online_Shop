@@ -1,6 +1,5 @@
 .form {
    display: flex;
-
    text-align: center;
 }
 
@@ -9,17 +8,38 @@
    cursor: pointer;
    background-color: transparent;
    border: none;
-   padding-top: 12px;
-}
-
-.form button {
-   cursor: pointer;
    opacity: 0.5;
    transition: opacity 0.2s ease-in-out;
 }
 
+
 .form button:hover {
    opacity: 1;
+}
+
+.buttonText {
+   border: 1px solid grey !important;
+   background-color: #bbe1f8 !important;
+   border-radius: 20px;
+   margin-left: 10px;
+   padding: 0 20px;
+   opacity: 1 !important;
+}
+
+.buttonText:hover {
+   transform: scale(1.1);
+}
+
+.buttonText:active {
+   transform: scale(0.9);
+}
+
+.buttonImage {
+   padding-top: 12px;
+}
+
+.buttonImage:active {
+   transform: scale(0.9);
 }
 
 /* .form button:hover,

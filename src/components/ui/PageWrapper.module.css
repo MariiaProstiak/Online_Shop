@@ -37,3 +37,21 @@
    top: 14px;
    cursor: pointer;
 }
+
+.backButton {
+   width: 50px;
+   height: 50px;
+   overflow: hidden;
+   border: none;
+   background-color: transparent;
+}
+
+.backButton img {
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+}
+
+.backButton img:hover {
+   transform: scale(1.2);
+}
