@@ -11,48 +11,20 @@ const ProductInfo = (props) => {
     const obj = {
       id: props.product.id,
       title: props.product.title,
-      imageUrl: props.product.imageUrl,
       price: props.product.price,
+      images: props.product.images,
       amount: amount,
     };
     appCtx.onAddToCart(obj);
   };
 
-  const imagesArray = [
-    {
-      url: "https://ir.ozone.ru/s3/multimedia-c/c1000/6383381868.jpg",
-      name: "jacket black",
-    },
-    {
-      url: "https://content.rozetka.com.ua/goods/images/big/200038189.jpg",
-      name: "jacket rose",
-    },
-    {
-      url: "https://b-k.net.ua/images/detailed/13/kurtka-maximus-red-561.jpg",
-      name: "jacket rouge",
-    },
-    {
-      url: "https://content.rozetka.com.ua/goods/images/big/200038189.jpg",
-      name: "jacket rose",
-    },
-    {
-      url: "https://b-k.net.ua/images/detailed/13/kurtka-maximus-red-561.jpg",
-      name: "jacket rouge",
-    },
-  ];
-
-  const firstImage = {
-    url: props.product.imageUrl,
-  };
-
-  imagesArray.unshift(firstImage);
-
   return (
     <div className={classes.info}>
-      <div className={classes.image}>
-        <ImageSlider images={imagesArray} />
-        {/* <img src={props.product.imageUrl} alt={props.product.title}></img> */}
-      </div>
+      {props.product.images && (
+        <div className={classes.image}>
+          <ImageSlider images={props.product.images} />
+        </div>
+      )}
       <div className={classes.details}>
         <div>
           <span>

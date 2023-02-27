@@ -1,0 +1,37 @@
+.imagesList {
+   display: flex;
+   justify-content: start;
+   align-items: baseline;
+}
+
+.imageItem {
+   width: 70px;
+   height: 70px;
+   overflow: hidden;
+   margin: 10px;
+   position: relative;
+}
+
+.imageItem img {
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+
+}
+
+.deleteButton {
+   position: absolute;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   border: 1px solid grey;
+   top: 0;
+   right: 0;
+   text-align: center;
+
+}
+
+.deleteButton:hover {
+   background-color: grey;
+
+}

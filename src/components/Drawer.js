@@ -111,7 +111,7 @@ export const Drawer = ({
                 {items.map((obj) => (
                   <div key={obj.id} className={classes.cartItem}>
                     <div
-                      style={{ backgroundImage: `url(${obj.imageUrl})` }}
+                      style={{ backgroundImage: `url(${obj.images[0]})` }}
                       className={classes.cartItemImg}
                     ></div>
                     <div style={{ marginRight: "20px", flex: "1 1 0%" }}>

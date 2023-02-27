@@ -15,6 +15,7 @@ export const ProductsList = (props) => {
             favorite={item.favorite}
             amount={item.amount}
             justInfo={props.justInfo}
+            images={item.images}
           />
         );
       })}

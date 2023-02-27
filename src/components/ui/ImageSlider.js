@@ -11,11 +11,26 @@ const ImageSlider = (props) => {
     >
       {props.images.map((image, index) => {
         return (
-          <div key={index}>
-            <img src={image.url} alt={`Image_${index}`} />
-            {image.name !== undefined && (
-              <p className={classes.legend}>{image.name}</p>
-            )}
+          <div
+            key={index}
+            style={{
+              width: "400px",
+              height: "auto",
+            }}
+          >
+            <img
+              src={image}
+              alt={`Image_${index}`}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+            {/*{image.name !== undefined &&
+              {
+                <p className={classes.legend}>{image.name}</p> 
+              }}*/}
           </div>
         );
       })}

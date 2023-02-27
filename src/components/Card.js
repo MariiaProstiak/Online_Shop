@@ -16,6 +16,7 @@ export const Card = (props) => {
     title: props.title,
     imageUrl: props.imageUrl,
     price: props.price,
+    images: props.images,
   };
 
   function onClickFavorite() {
@@ -35,6 +36,7 @@ export const Card = (props) => {
       imageUrl: props.imageUrl,
       price: props.price,
       amount: amount,
+      images: props.images,
     };
     appCtx.onAddToCart(obj);
   };
@@ -47,7 +49,6 @@ export const Card = (props) => {
     //appCtx.onUpdateProduct(props.id);
   };
   const openProductPageHandler = () => {
-    console.log("double click");
     navigate(`/product/${props.id}`);
   };
 
@@ -80,8 +81,8 @@ export const Card = (props) => {
             )}
           </div>
 
-          <div className={classes.image} onDoubleClick={openProductPageHandler}>
-            <img src={props.imageUrl} alt="" />{" "}
+          <div className={classes.image} onClick={openProductPageHandler}>
+            <img src={props.images[0]} alt="" />{" "}
           </div>
           <h5>{props.title}</h5>
           <div className={classes.cardContent}>

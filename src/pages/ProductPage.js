@@ -38,7 +38,7 @@ const ProductPage = () => {
 
   return (
     <PageWrapper title={currentProduct.title} isBackArrow={true}>
-      <ProductInfo product={currentProduct} />
+      {currentProduct.images && <ProductInfo product={currentProduct} />}
     </PageWrapper>
   );
 };

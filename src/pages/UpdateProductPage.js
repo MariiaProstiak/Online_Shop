@@ -18,24 +18,28 @@ export const UpdateProductPage = (props) => {
           price: data.price,
           title: data.title,
           imageUrl: data.imageUrl,
+          images: data.images,
+          details: data.details,
         };
-
         setProductInfo(product);
       });
   }, []);
   function updateProductHandle(productData) {
     const updatedProduct = { ...productData, id: params.name };
+    console.log(updatedProduct);
     ctx.onUpdateProduct(updatedProduct);
   }
 
   return (
     <section style={{ padding: "2rem" }}>
       <h1>Update product {params.name}</h1>
-      <NewProductForm
-        onAddProduct={updateProductHandle}
-        product={productInfo}
-        updateForm={true}
-      />
+      {productInfo.images && (
+        <NewProductForm
+          onAddProduct={updateProductHandle}
+          product={productInfo}
+          updateForm={true}
+        />
+      )}
     </section>
   );
 };

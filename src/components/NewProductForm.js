@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./NewProductForm.module.css";
+import InputListImages from "./ui/InputListImages";
 import UploadAndDisplayImage from "./ui/UploadAndDisplayImage ";
 
 export const NewProductForm = (props) => {
@@ -22,12 +23,18 @@ export const NewProductForm = (props) => {
   const [details, setDetails] = useState(
     props.updateForm ? props.product.details : ""
   );
+
+  const [imageArr, setImageArr] = useState(
+    props.updateForm ? props.product.images : []
+  );
   let image = "";
   let imageUrl = "";
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const priceInputRef = useRef();
   const detailsInputRef = useRef();
+
+  //const imageArr = props.updateForm ? [props.product.imageUrl] : [];
 
   // if (props.updateForm) {
   //   setImgUrl(props.product.imageUrl);
@@ -45,6 +52,7 @@ export const NewProductForm = (props) => {
     const productData = {
       title: enteredTitle,
       imageUrl: enteredImage,
+      images: imageArr,
       price: enteredPrice,
       details: enteredDetails,
       favorite: false,
@@ -63,6 +71,10 @@ export const NewProductForm = (props) => {
   }
 
   function onChangeImageText(e) {
+    //imageArr.push(e.target.value);
+    // setImagesArr((prev) => {
+    //   prev.push(e.target.value);
+    // });
     setImgUrl(e.target.value);
     if (e.target.value !== "") {
       setShowPreview(true);
@@ -70,6 +82,23 @@ export const NewProductForm = (props) => {
       setShowPreview(false);
     }
   }
+
+  const deleteImageFromArrayHandler = (url) => {
+    // setImagesArr((prev) => {
+    //   prev.filter((item) => item !== url);
+    // });
+    console.log(url);
+    setImageArr(imageArr.filter((item) => item !== url));
+  };
+
+  const addImageHandler = (event) => {
+    event.preventDefault();
+    //imageArr.push(imgUrl);
+    if (imgUrl !== "") {
+      setImageArr([...imageArr, imgUrl]);
+      imageInputRef.current.value = "";
+    }
+  };
 
   if (selectedOption === "URL" || props.updateForm) {
     image = (
@@ -79,19 +108,19 @@ export const NewProductForm = (props) => {
         </label>
         <input
           type="url"
-          required
           id="image"
           defaultValue={props.updateForm ? props.product.imageUrl : ""}
           ref={imageInputRef}
           onChange={onChangeImageText}
         ></input>
-        {showPreview && (
+        <button onClick={addImageHandler}>Add image</button>
+        {/* {showPreview && (
           <img
             src={imgUrl}
             alt="img"
             style={{ width: "70px", height: "70px" }}
           ></img>
-        )}
+        )} */}
       </div>
     );
   } else if (selectedOption === "Upload") {
@@ -150,6 +179,12 @@ export const NewProductForm = (props) => {
           </div>
         </div>
         {image && image}
+        {showPreview && (
+          <InputListImages
+            images={imageArr}
+            onDeleteImage={deleteImageFromArrayHandler}
+          />
+        )}
         <div className={classes.control}>
           <label htmlFor="price" className={classes.label}>
             Product price
